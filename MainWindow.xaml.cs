@@ -25,7 +25,7 @@ namespace csv_merge
 
             this.Drop += ViewModel.OnDragDrop;
 
-            ViewModel.AddPaths(@"C:\Source\designs");
+            //ViewModel.AddPaths(@"C:\Source\designs");
         }
 
     }

@@ -281,11 +281,10 @@ namespace csv_merge
             if (Columns.Count == 0)
                 yield break;
 
-            var headers = ColumnNames;
+            yield return ColumnNames;
 
-            yield return headers;
-
-            var columnOrder = headers.Skip(1).Select(Tuple.Create<string, int>).ToDictionary(t => t.Item1.ToUpperInvariant(), t => t.Item2);
+            var headers = ColumnNames.Skip(1).ToArray();
+            var headerLength = headers.Length;
 
             foreach (var entry in files)
             {
@@ -304,26 +303,22 @@ namespace csv_merge
                         MessageBox.Show($"Unable to read file: {e.Message}");
                     }
 
-                    var mapping =
-                        currentHeaders
-                        .Select(h => h.ToUpperInvariant())
-                        .Where(columnOrder.ContainsKey)
-                        .Select(h => columnOrder[h])
-                        .ToArray();
-
-                    if (currentHeaders == null || currentHeaders.Length == 0 || mapping.Length == 0)
+                    if (currentHeaders == null || currentHeaders.Length == 0)
                     {
                         MessageBox.Show($"Could not find any usable headers in:\n{entry}");
                         continue;
                     }
 
+                    var columnOrder = currentHeaders.Select(Tuple.Create<string, int>).ToDictionary(t => t.Item1, t => t.Item2, Comparer);
+                    var mapping = headers.Select(h => columnOrder.ContainsKey(h) ? columnOrder[h] : -1).ToArray();
+
                     while (!reader.EndOfData)
                     {
                         var fields = reader.ReadFields();
                         var ordered =
-                            Enumerable.Range(1, Math.Min(mapping.Length, fields.Length))
+                            Enumerable.Range(1, headerLength)
                                       .Select(i => mapping[i - 1])
-                                      .Select(i => i < fields.Length ? fields[i]?.Replace("\"", "\"\"") : String.Empty)
+                                      .Select(i => i >= 0 && i < fields.Length ? fields[i]?.Replace("\"", "\"\"") : String.Empty)
                                       .StartWith(entry.Name);
 
                         yield return ordered.ToArray();

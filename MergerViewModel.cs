@@ -309,6 +309,20 @@ namespace csv_merge
                         continue;
                     }
 
+                    var lookup = currentHeaders.ToLookup(c => c).Where(c => c.Count() > 1);
+
+                    if (lookup.Any(l => string.IsNullOrWhiteSpace(l.Key)))
+                    {
+                        MessageBox.Show($"Warning: Empty column in {entry.Name}, skipping");
+                        continue;
+                    }
+
+                    if (lookup.Any())
+                    {
+                        MessageBox.Show($"Duplicate headers in {entry.Name}: " + string.Join("\n", lookup.Select(c => $"'{c.Key}'")));
+                        continue;
+                    }
+
                     var columnOrder = currentHeaders.Select(Tuple.Create<string, int>).ToDictionary(t => t.Item1, t => t.Item2, Comparer);
                     var mapping = headers.Select(h => columnOrder.ContainsKey(h) ? columnOrder[h] : -1).ToArray();
 

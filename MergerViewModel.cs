@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -244,7 +245,7 @@ namespace csv_merge
                     return string.Join(column.Separator ?? "; ", values);
 
                 case CombineMode.Total:
-                    return values.Select(v => int.TryParse(v, out int result) ? result : 0).Sum().ToString();
+                    return values.Select(v => double.TryParse(v, NumberStyles.Any, null, out var result) ? result : 0).Sum().ToString();
 
                 case CombineMode.Union:
                 default:

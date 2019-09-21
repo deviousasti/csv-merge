@@ -1,5 +1,5 @@
 
-#CSV Merge
+# CSV Merge
 
 Basic Usage
 -----------
@@ -39,16 +39,16 @@ The combination of key fields will be used to determine the number of rows.
 
 Click on one of the `Combine` fields to choose the type of operation.
 
-###Combine operations
+### Combine operations
 
-####`Union` 
+#### `Union` 
 Set union, which discards duplicates
 `A, A, B, C, A, B, D` becomes `A, B, C, D`
 
-####`Join` 
+#### `Join` 
 Joins all fields with the specified separator - if none is specified, a semicolon `;` is used
 
-####`Total` 
+#### `Total` 
 Sums all the fields together. A numeric type is expected. 
 
 --------------------------------------------------------------------------

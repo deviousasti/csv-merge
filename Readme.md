@@ -90,17 +90,8 @@ Example
 | 456, 123, 789 | 2027, 2110, 2137, 2164 | Jane, John, Jack | 2017 | 207588 | 5%         |
 | 789           | 2067                   | Jack             | 2018 | 23819  | 5%         |
 
+4. Choosing `Year` as the key, *Total* on `Value`, and *Join* on `Sales_Rep_ID` and `Sales_Rep_Name`  [See screen](https://user-images.githubusercontent.com/2375486/65372156-e14c1200-dc89-11e9-85fd-2a08fa7d3807.png):
 
-4. Choosing `Year` as the key, and *Total* on `Value`:
-
-| Sales_Rep_ID  | Postcode               | Sales_Rep_Name   | Year | Value  | Commission |
-| ------------- | ---------------------- | ---------------- | ---- | ------ | ---------- |
-| 456, 123, 789 | 2027, 2110, 2137, 2164 | Jane, John, Jack | 2017 | 207588 | 5%         |
-| 789           | 2067                   | Jack             | 2018 | 23819  | 5%         |
-
-5. Choosing `Year` as the key, *Total* on `Value`, and *Join* on `Sales_Rep_ID` and `Sales_Rep_Name`:
-
-![Setting screen](https://user-images.githubusercontent.com/2375486/65372156-e14c1200-dc89-11e9-85fd-2a08fa7d3807.png)
 
 |Sales_Rep_ID       | Postcode               | Sales_Rep_Name         | Year | Value  | Commission |
 |------------------ | ---------------------- | ---------------------- | ---- | ------ | ---------- |

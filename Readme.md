@@ -1,5 +1,10 @@
-
 # CSV Merge
+
+A GUI tool to merge and consolidate CSV files.
+
+Download it [here](https://github.com/deviousasti/csv-merge/raw/master/csv-merge.exe).
+
+For a tutorial on how to combine your Bill of Materials (BOM), [see here](https://asti.dynz.net/post/bom-merge/).
 
 Basic Usage
 -----------
